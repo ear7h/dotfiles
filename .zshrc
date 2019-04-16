@@ -1,5 +1,8 @@
 export LANG=en_US.UTF-8
-export ZSH="/Users/julio/.oh-my-zsh"
+export ZSH="/Users/julio/.zsh"
+setopt APPEND_HISTORY
+export HISTFILE="/Users/julio/.zsh_history"
+export HISTSIZE=1000
 
 #
 # profile
@@ -15,7 +18,7 @@ fi
 
 autoload -U compaudit compinit
 compinit
-source $ZSH/lib/completion.zsh
+source $ZSH/completion.zsh
 # source $ZSH/oh-my-zsh.sh
 
 #
@@ -48,33 +51,35 @@ check_or_num() {
 git_prompt() {
 	branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [ $? -eq 0 ]; then
-		if [[ branch == 'master' ]]; then
+
+		echo $branch | grep -q "^master$"
+		if [[ $? -eq 0 ]]; then
 			branch=''
 		fi
 
 		git_status=$(git status -s)
 
-		echo $git_status | grep -q "^M "
+		echo $git_status | grep -q "^M"
 		if [ $? -eq 0 ]; then
-			staged="+"
+			staged="S"
 		fi
 
-		echo $git_status | grep -q " M "
+		echo $git_status | grep -q "^.M"
 		if [ $? -eq 0 ]; then
 			mod="M"
 		fi
 
-		echo $git_status | grep -q "?? "
+		echo $git_status | grep -q "??"
 		if [ $? -eq 0 ]; then
 			new="?"
 		fi
 
-		echo $git_status | grep -q "A "
+		echo $git_status | grep -q "^A"
 		if [ $? -eq 0 ]; then
 			add="+"
 		fi
 
-		echo -n ' ' $branch $staged $mod $new $add $(gradient $(git_color))
+		echo -n ' ' $branch $staged$mod$new$add $(gradient $(git_color))
 	fi
 }
 
@@ -161,13 +166,15 @@ set_prompt
 # key binding
 #
 
-export KEYTIMEOUT=50
+export KEYTIMEOUT=20
 
 bindkey -v
 bindkey -v jj vi-cmd-mode
 
-bindkey -a '^L' forward-word # [Ctrl-RightArrow] - move forward one word
-bindkey -a '^H' backward-word # [Ctrl-LeftArrow] - move backward one word
+bindkey -a '^L' forward-word # [Ctrl-L] - move forward one word
+bindkey -a '^H' backward-word # [Ctrl-H] - move backward one word
+bindkey '^[f' forward-word # [opt-RightArrow] - move forward one word
+bindkey '^[b' backward-word # [opt-LeftArrow] - move backward one word
 
 export EDITOR=vim
 
