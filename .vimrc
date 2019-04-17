@@ -7,12 +7,11 @@ call plug#end()
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-
+let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
-
-let g:UltiSnipsSnippetDierectories=["~/.vim/ultisnips", "ultisnips"]
+let g:UltiSnipsSnippetDierectories=["ultisnips/", "~/.vim/ultisnips"]
 
 filetype plugin indent on
 

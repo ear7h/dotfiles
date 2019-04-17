@@ -79,7 +79,29 @@ git_prompt() {
 			add="+"
 		fi
 
-		echo -n ' ' $branch $staged$mod$new$add $(gradient $(git_color))
+#		diff=$(git log --left-right --graph --cherry-pick --oneline \
+#			$(git branch --format='%(upstream)...%(refname)'))
+
+		diff=$(git diff --name-only @{u})
+		if [ ! -z $diff ]; then
+			diff='≠'
+		fi
+
+#		recv=$(( $(echo diff | grep '^<' | wc -l) ))
+#		if [ $recv -ne 0 ]; then
+#			recv="⊻$recv"
+#		else
+#			recv=''
+#		fi
+
+#		send=$(( $(echo diff | grep '^>' | wc -l) ))
+#		if [ $send -ne 0 ]; then
+#			send="⊼$send"
+#		else
+#			send=''
+#		fi
+
+		echo -n ' ' $branch $staged$mod$new$add $diff $(gradient $(git_color))
 	fi
 }
 
