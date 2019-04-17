@@ -10,9 +10,9 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 let g:UltiSnipsEditSplit="vertical"
 
-let g:UltiSnipsSnippetsDir="~/.vim/snippets/"
+let g:UltiSnipsSnippetsDir="~/.vim/ultisnips/"
 
-let g:UltiSnipsSnippetDierectories=["~/.vim/snipets"]
+let g:UltiSnipsSnippetDierectories=["~/.vim/ultisnips", "ultisnips"]
 
 filetype plugin indent on
 
