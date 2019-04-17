@@ -137,9 +137,17 @@ concat() {
 	done
 }
 
+rand_ten() {
+	if [ -f `which jot` ];then
+		jot -r 1 1 10
+	else
+		shuf -i 1-10 -n 1
+	fi
+}
+
 roll_die() {
 	arr=('⚀' '⚁' '⚂' '⚃' '⚄' '⚅' '💖' '🌞' '🌻' '🌆')
-	RANDOM_DIE=${arr[$(jot -r 1 1 10)]}
+	RANDOM_DIE=${arr[$(rand_ten)]}
 }
 
 __=' '
