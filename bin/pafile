@@ -1,0 +1,86 @@
+#!/usr/bin/env python
+
+# uses python 3
+# usage: pafile filename
+# the file must not exist
+
+import sys
+from datetime import date
+
+raise Exception('remove me and fill in `userid` and `author`')
+
+fname = sys.argv[1]
+userid = ''
+author = ''
+date = date.today().strftime('%d %b %Y')
+
+s_tmpl = """#
+# Filename:  {fname}
+# UserID:    {userid}
+# Author:    {author}
+# Date:      {date}
+# Sources of help: na
+
+	.cpu	cortex-a53
+	.syntax	unified
+
+	.equ	FP_OFFSET, 4
+
+	.global {fname_noext}
+	.text
+	.align 2
+
+/*
+ * Name: {fname_noext}
+ * Function Prototype:
+ * Description:
+ * Parameters:
+ * Side Effects:
+ * Error Condition:
+ * Return Value:
+ * Registers Used:
+ */
+{fname_noext}:
+"""
+
+s_tmpl_suf = """# standard prologue
+	push	{fp, lr}
+	add	fp, sp, FP_OFFSET
+
+
+# standard epilogue
+	sub	sp, fp, FP_OFFSET
+	pop	{fp, pc}
+"""
+
+
+c_tmpl = """/*
+ * Filename: {fname}
+ * UserID:   {userid}
+ * Author:   {author}
+ * Date:     {date}
+ * Sources of help: man pages, cplusplus.com
+ */
+"""
+
+
+with open(fname, 'x') as f:
+    ext = fname.split(".")[-1]
+    msg = ''
+    if ext == 's':
+        msg = s_tmpl.format(
+                fname=fname,
+                userid=userid,
+                author=author,
+                date=date,
+                fname_noext='.'.join(fname.split('.')[:-1]))
+        msg += s_tmpl_suf
+    elif ext == 'c':
+        msg = c_tmpl.format(
+            fname=fname,
+            userid=userid,
+            author=author,
+            date=date)
+
+    f.write(msg);
+
