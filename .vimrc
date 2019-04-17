@@ -18,14 +18,13 @@ filetype plugin indent on
 
 set encoding=utf-8
 
-set title
+set laststatus=2
 
 " Tells vim to show line numbers
 set number
 set ruler
 set showmode
 
-set statusline=2
 
 " Tells vim to use language syntax highlighting
 syntax on
