@@ -1,8 +1,10 @@
 export LANG=en_US.UTF-8
 export ZSH="/Users/julio/.zsh"
-setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 export HISTFILE="/Users/julio/.zsh_history"
 export HISTSIZE=1000
+export SAVEHIST=1000
 
 #
 # profile
