@@ -76,7 +76,7 @@ git_prompt() {
 #		diff=$(git log --left-right --graph --cherry-pick --oneline \
 #			$(git branch --format='%(upstream)...%(refname)'))
 
-		diff=$(git diff --name-only @{u} 2> /dev/null)
+		diff=$(git diff --name-only HEAD @{u} 2> /dev/null)
 		if [ ! -z $diff ]; then
 			diff='≠'
 		fi
