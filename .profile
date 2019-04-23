@@ -11,9 +11,14 @@ else
 	alias grep='grep --color=auto'
 fi
 
-alias curl='curl -LO'
-
+alias add='git add'
+alias commit='git commit'
+alias brach='git branch'
+alias status='git status'
+alias push='git push'
 alias diff='git diff'
+
+alias curl='curl -LO'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -21,7 +26,7 @@ alias ....='cd ../../..'
 
 alias shutdown='sudo shutdown'
 
-alias clang-format='clang-format -style=~/.clang-formay'
+alias clang-format='clang-format -style=~/.clang-format'
 alias javafmt='java -jar ~/bin/javafmt.jar'
 
 alias python='python3'

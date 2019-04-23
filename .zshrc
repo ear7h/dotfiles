@@ -42,14 +42,6 @@ username() {
 	echo -n $pad
 }
 
-check_or_num() {
-	if [[ $1 -eq 0 ]]; then
-		echo ☼
-	else
-		echo $1
-	fi
-}
-
 git_prompt() {
 	branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [ $? -eq 0 ]; then
@@ -59,7 +51,7 @@ git_prompt() {
 			branch=''
 		fi
 
-		git_status=$(git status -s)
+		git_status=$(git status -s 2> /dev/null)
 
 		echo $git_status | grep -q "^M"
 		if [ $? -eq 0 ]; then
@@ -84,7 +76,7 @@ git_prompt() {
 #		diff=$(git log --left-right --graph --cherry-pick --oneline \
 #			$(git branch --format='%(upstream)...%(refname)'))
 
-		diff=$(git diff --name-only @{u})
+		diff=$(git diff --name-only @{u} 2> /dev/null)
 		if [ ! -z $diff ]; then
 			diff='≠'
 		fi
