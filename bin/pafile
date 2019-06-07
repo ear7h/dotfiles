@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # uses python 3
-# usage: pafile filename [pretty name]
+# usage: pafile filename
 # the file must not exist
 
 import sys
@@ -9,42 +9,10 @@ from datetime import date
 
 raise Exception('remove me and fill in `userid` and `author`')
 
+fname = sys.argv[1]
 userid = ''
 author = ''
 date = date.today().strftime('%d %b %Y')
-
-fname = sys.argv[1]
-ext = fname.split(".")[-1]
-fname_noext = ''
-if len(sys.argv) > 3:
-    fname_noext = sys.argv[2]
-else:
-    fname_noext = '.'.join(fname.split('.')[:-1])
-
-
-md_tmpl = """===
-filename:  {fname}
-user-id:    {userid}
-author:    {author}
-date:      {date}
-sources of help: na
-===
-
-# {fname_noext}
-
-# Building
-
-# Running
-
-## Example
-
-## Errors
-
-# Testing
-
-# Questions
-
-"""
 
 s_tmpl = """#
 # Filename:  {fname}
@@ -73,16 +41,18 @@ s_tmpl = """#
  * Registers Used:
  */
 {fname_noext}:
-# standard prologue
-	push	{{fp, lr}}
+"""
+
+s_tmpl_suf = """# standard prologue
+	push	{fp, lr}
 	add	fp, sp, FP_OFFSET
 
 
 # standard epilogue
 	sub	sp, fp, FP_OFFSET
-	pop	{{fp, pc}}
-
+	pop	{fp, pc}
 """
+
 
 c_tmpl = """/*
  * Filename: {fname}
@@ -93,74 +63,24 @@ c_tmpl = """/*
  */
 """
 
-c_test_tmpl = """/*
- * Filename: {fname}
- * UserID:   {userid}
- * Author:   {author}
- * Date:     {date}
- * Sources of help: man pages, cplusplus.com
- */
-
-#include <stdio.h>
-
-#include "test.h"
-
-typedef struct {{
-
-}} tc_t;
-
-void {fname_noext} () {{
-  tc_t tcs[] = {{
-
-  }};
-
-  int i;
-  tc_t tc;
-  for (i = 0;
-    i < sizeof(tcs) / sizeof(tc_t);
-    i++) {{
-    
-    tc = tcs[i];
-
-    TEST( );
-  }}
-}}
-
-
-int main( void ) {{
-
-  fprintf( stderr, "Running tests for {fname_noext}...\\n" );
-  {fname_noext}();
-  fprintf( stderr, "Done running tests!\\n" );
-
-  return 0;
-}}
-
-"""
-
 
 with open(fname, 'x') as f:
-    tmpl = ''
-
+    ext = fname.split(".")[-1]
+    msg = ''
     if ext == 's':
-        # assembly files
-        tmpl = s_tmpl
-    elif fname.startswith('test') and ext == 'c':
-        # c test files
-        tmpl = c_test_tmpl
+        msg = s_tmpl.format(
+                fname=fname,
+                userid=userid,
+                author=author,
+                date=date,
+                fname_noext='.'.join(fname.split('.')[:-1]))
+        msg += s_tmpl_suf
     elif ext == 'c':
-        # c files
-        tmpl = c_tmpl
-    elif ext == 'md' or fname.lower() == 'readme':
-        # markdown and readme
-        tmpl = md_tmpl
-
-    msg = tmpl.format(
+        msg = c_tmpl.format(
             fname=fname,
             userid=userid,
             author=author,
-            date=date,
-            fname_noext=fname_noext)
+            date=date)
 
     f.write(msg);
 
