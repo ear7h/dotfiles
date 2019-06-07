@@ -4,6 +4,9 @@ set -x
 
 cd `dirname "$0"`
 
+echo "changing default shell"
+chsh -s /bin/zsh
+
 echo "setting up git..."
 cp .gitconfig ~/
 
