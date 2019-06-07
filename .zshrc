@@ -2,7 +2,7 @@ export LANG=en_US.UTF-8
 export ZSH=$HOME/.zsh
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
-export HISTFILE="/Users/julio/.zsh_history"
+export HISTFILE=$HOME/.zsh_history
 export HISTSIZE=1000
 export SAVEHIST=1000
 
@@ -29,7 +29,7 @@ source $ZSH/completion.zsh
 
 username() {
 	pad=''
-	if [ `whoami` != 'julio' ];then
+	if [ `whoami` != 'julio' -a `whoami` != 'ear7h' ]; then
 		echo -n $(whoami)
 		pad=' '
 	fi

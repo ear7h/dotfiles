@@ -1,3 +1,5 @@
-user.name=julio
-user.email=julio@ear7h.network
-core.editor=vim
+[user]
+	name = julio
+	email = julio@ear7h.network
+[core]
+	editor = vim

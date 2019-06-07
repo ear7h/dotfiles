@@ -6,5 +6,4 @@
 .skhdrc
 .zsh/
 .zshrc
-.gitconfig
 bin/
