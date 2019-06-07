@@ -6,5 +6,6 @@ DIR=`dirname "$0"`
 
 for file in $(cat $DIR/file_list.txt); do
 	echo $file
-	cp -r ~/$file $DIR
+	rm -rf ~/$file
+	cp -r $file ~/
 done
