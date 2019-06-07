@@ -1,5 +1,5 @@
 export LANG=en_US.UTF-8
-export ZSH="/Users/julio/.zsh"
+export ZSH=$HOME/.zsh
 setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 export HISTFILE="/Users/julio/.zsh_history"
@@ -154,7 +154,7 @@ concat() {
 }
 
 rand_ten() {
-	if [ -f `which jot` ];then
+	if [ `command -v jot` ]; then
 		jot -r 1 1 10
 	else
 		shuf -i 1-10 -n 1
@@ -173,7 +173,7 @@ set_prompt() {
 
 	PROMPT=$(concat \
 		$(kf white black '$__ %T $__') \
-		$(kf white black $(username)) \
+		$(kf white black $(username)) ' ' \
 		$(gradient white blue) ' ' $(kf blue black '%3~' ) ' ' \
 		'$(gradient blue $(git_color))' \
 			$(kf '$(git_color)' black '$(git_prompt)') \

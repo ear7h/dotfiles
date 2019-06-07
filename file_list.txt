@@ -1,0 +1,10 @@
+.clang-format
+.vim/
+.vimrc
+.profile
+.chunkwmrc
+.skhdrc
+.zsh/
+.zshrc
+.gitconfig
+bin/
