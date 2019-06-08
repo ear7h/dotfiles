@@ -1,3 +1,5 @@
+.gitconfig
+.gitignore
 .clang-format
 .vim/
 .vimrc

@@ -192,11 +192,9 @@ set_prompt
 
 export KEYTIMEOUT=20
 
-bindkey -v
-bindkey -v jj vi-cmd-mode
+# bindkey -v
+# bindkey -v jj vi-cmd-mode
 
-bindkey -a '^L' forward-word # [Ctrl-L] - move forward one word
-bindkey -a '^H' backward-word # [Ctrl-H] - move backward one word
 bindkey '^[f' forward-word # [opt-RightArrow] - move forward one word
 bindkey '^[b' backward-word # [opt-LeftArrow] - move backward one word
 
@@ -210,11 +208,9 @@ bindkey hh edit-command-line
 # start typing + [Up-Arrow] - fuzzy find history forward
 autoload -U up-line-or-beginning-search
 zle -N up-line-or-beginning-search
-bindkey -a 'k' up-line-or-beginning-search
 bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 
 # start typing + [Down-Arrow] - fuzzy find history backward
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
-bindkey -a 'j'  down-line-or-beginning-search
 bindkey "${terminfo[kcud1]}"  down-line-or-beginning-search

@@ -1,5 +1,7 @@
 [user]
 	name = julio
-	email = julio@ear7h.network
+	email = julio.grillo98@gmail.com
+	username = ear7h
 [core]
 	editor = vim
+	excludesfile = ~/.gitignore
