@@ -2,9 +2,20 @@
 set -e
 set -x
 
-cd `dirname "$0"`
+BASE_NAME=`basename $(pwd)`
+if [[ $BASE_NAME != "dotfiles" ]]; then
+	echo 'you must run this script from the dotfiles repo'
+	echo 'exiting'
+	exit 1
+fi
 
-echo "changing default shell"
+if [[ ! $HOME ]]; then
+	echo '$HOME not set'
+	echo 'exiting'
+	exit 1
+fi
+
+echo "changing default shell..."
 chsh -s /bin/zsh
 
 echo "setting up git..."
@@ -23,5 +34,8 @@ git push
 
 git submodule update --init --recursive
 
+echo "installing apps..."
+./install_apps.sh
+
 echo "setting up dotfiles..."
-./copy_out.sh
+./sync.sh

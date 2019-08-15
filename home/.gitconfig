@@ -1,0 +1,7 @@
+[user]
+	name = julio
+	email = julio.grillo98@gmail.com
+[credential]
+	helper = osxkeychain
+[core]
+	excludesFile = ~/.gitignore

@@ -1,0 +1,8 @@
+git
+python3
+vim
+colordiff
+man
+less
+valgrind
+curl
