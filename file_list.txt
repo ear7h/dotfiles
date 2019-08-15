@@ -1,4 +1,3 @@
-.gitconfig
 .gitignore
 .clang-format
 .vim/

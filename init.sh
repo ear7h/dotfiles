@@ -19,7 +19,6 @@ echo "changing default shell..."
 chsh -s /bin/zsh
 
 echo "setting up git..."
-cp .gitconfig ~/
 
 if [ $(uname) = "Darwin" ]; then
 	git config --global credential.helper osxkeychain

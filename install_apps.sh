@@ -1,8 +1,6 @@
-#/bin/sh
-
+#/bin/bash
 
 set -e
-set -x
 
 if [[ `uname` == 'Darwin' ]]; then
 	# install dev tools
@@ -14,7 +12,7 @@ if [[ `uname` == 'Darwin' ]]; then
 
 else
 	sudo apt-get update
-	sudo apt-get install -y butild-essential
+	sudo apt-get install -y build-essential vim-nox
 	sudo apt-get install $(cat app_list.txt)
 
 fi
