@@ -24,6 +24,6 @@ else
 fi
 
 
-# rsync -var --update --progress --files-from=file_list.txt home $HOME
-rsync -var --update --progress --files-from=file_list.txt $HOME home
+rsync -vr --update --progress --files-from=file_list.txt home $HOME
+rsync -vr --update --progress --files-from=file_list.txt $HOME home
 
