@@ -1,4 +1,0 @@
-#!/bin/bash
-
-pandoc -s $1.tex -o $1.pdf
-open $1.pdf
