@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # Let Home Manager install and manage itself.
@@ -9,26 +9,26 @@
   home.username = "julio";
   home.homeDirectory = "/Users/julio";
   home.sessionPath = [
-    "/usr/local/bin" # homebrew packages
     "/Users/julio/bin"
+    "/Users/julio/.go/bin"
+    "/Users/julio/.cargo/bin"
+    "/usr/local/bin" # homebrew packages
   ];
 
-  nixpkgs.overlays = [
-    (self: super: {
-      vim = super.vim // { configureFlags = super.configureFlags ++ [
-        "-xterm_clipboard"
-        "-X11"
-      ]; };
-    })
-  ];
+  home.sessionVariables = {
+    GOPATH = "$HOME/.go";
+  };
 
   home.packages = [
+    pkgs.vim
     pkgs.go
     pkgs.ghc
+    pkgs.stack
     pkgs.rustup
     pkgs.ripgrep
-    pkgs.vim
     pkgs.exiftool
+    pkgs.dhall
+    pkgs.dhall-json
   ];
 
   programs.zsh = {
@@ -52,10 +52,19 @@
   };
 
   home.file = {
+    ".vim/autoload/".source = ./vim/autoload;
+    ".vim/after/ftplugin".source = ./vim/after/ftplugin;
     ".vimrc".source = ./vimrc;
     ".skhdrc".source = ./skhdrc;
     ".yabairc".source = ./yabairc;
   };
+
+  home.activation = {
+    vimRuntime = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD mkdir $VERBOSE_ARG -p $HOME/.vim/{backup,undo}
+    '';
+  };
+
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

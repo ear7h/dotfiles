@@ -1,5 +1,16 @@
-''
+call plug#begin('~/.vim/plugged')
+
+Plug 'LnL7/vim-nix'
+Plug 'vmchale/dhall-vim'
+Plug 'neovimhaskell/haskell-vim'
+
+call plug#end()
+
 filetype plugin indent on
+
+set backupdir=~/.vim/backup
+set undodir=~/.vim/undo
+
 
 set encoding=utf-8
 
@@ -38,4 +49,3 @@ match ErrorMsg '\%>80v.\+'
 :imap jj <Esc>
 :nmap <C-K> <C-U>
 :nmap <C-J> <C-D>
-''
