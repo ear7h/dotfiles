@@ -8,6 +8,9 @@ shift + alt - j : yabai -m window --warp south
 shift + alt - k : yabai -m window --warp north
 shift + alt - l : yabai -m window --warp east
 
+alt - 1 : yabai -m display --focus 1
+alt - 2 : yabai -m display --focus 2
+
 alt - r : yabai -m space --rotate 90
 
 alt - f : yabai -m window --toggle zoom-fullscreen

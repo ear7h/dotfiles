@@ -29,6 +29,9 @@
     pkgs.exiftool
     pkgs.dhall
     pkgs.dhall-json
+    pkgs.imagemagick
+    pkgs.xsv
+    pkgs.miller
   ];
 
   programs.zsh = {
